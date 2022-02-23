@@ -1,14 +1,14 @@
 module Tweets
-    class CreateTweetService
+    class CreateTweetService < Tweets::BaseService
 
-        def initialize(params)
-            @tweet = params[:tweet_text]
+        def initialize(tweet_text)
+            super
+
+            @tweet_text = tweet_text
         end
 
         def call
-            super
-
-            @client.update(@tweet)
+            @client.update(@tweet_text)
         end
 
 

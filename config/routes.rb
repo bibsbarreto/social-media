@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :users do
-    resources :tweets, only: [:post, :create] do
+    resources :tweets, only: [:create] do
       get 'last_tweets', on: :collection
     end
   end

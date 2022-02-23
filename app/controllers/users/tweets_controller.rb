@@ -3,9 +3,9 @@ class Users::TweetsController < ApplicationController
     
     def last_tweets
         default_tweets_number = 10
-        tweets_number = tweets_params[:tweets_number] ||= default_tweets_number
+        tweets_number = tweets_params[:tweets_number].to_i ||= default_tweets_number
 
-        service = Tweets::LastTweetsService.new(tweets_number.to_i).call
+        service = Tweets::LastTweetsService.new(tweets_number).call
 
         render json: service
     end
@@ -13,7 +13,7 @@ class Users::TweetsController < ApplicationController
     def create
         tweet_text = tweets_params[:tweet_text]
 
-        service = Tweets::CreateTweetService.new().call
+        service = Tweets::CreateTweetService.new(tweet_text).call
 
         render json: service
     end
